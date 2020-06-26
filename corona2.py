@@ -7,7 +7,7 @@ def date_to_week(d):
     return int(datetime.date(int(split_date[2]), int(split_date[0]), int(split_date[1])).strftime('%U'))
 
 # Historical deaths data (and 2020, which will be overwritten where possible)
-deaths = pd.read_csv('deaths.csv')
+deaths = pd.read_csv('deaths_2020-06-24.csv')
 deaths = deaths.drop(columns=['Type', 'Week Ending Date', 'Time Period', 'Suppress','Note','State Abbreviation'])
 
 deaths = deaths.rename(columns={'Age Group': 'Slice'})
@@ -25,7 +25,7 @@ max_deaths = all_deaths[all_deaths['Year'] != 2020].set_index(['Jurisdiction', '
 max_deaths['Year'] = '2015-2019 Max'
 
 # 2020 total deaths, and COVID deaths (filtering out other "select deaths numbers")
-covid_deaths = pd.read_csv('covid19_deaths_2020-06-19.csv')
+covid_deaths = pd.read_csv('covid19_deaths_2020-06-25.csv')
 covid_deaths = covid_deaths.drop(columns=['Influenza Deaths', 'Pneumonia and COVID-19 Deaths', 'Pneumonia Deaths'])
 covid_deaths = covid_deaths.drop(columns=['Percent of Expected Deaths', 'Data as of', 'Start week', 'Group'])
 covid_deaths = covid_deaths.drop(columns=['Pneumonia, Influenza, or COVID-19 Deaths', 'Indicator', 'Footnote'])
